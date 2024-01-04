@@ -32,7 +32,7 @@ const PublicRoutes = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="MATCH_DETAIL">
+      <Stack.Navigator initialRouteName="MATCHES_LIST">
         <Stack.Screen
           name="MATCHES_LIST"
           component={MatchesList}
