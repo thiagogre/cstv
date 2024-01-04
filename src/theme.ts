@@ -6,6 +6,10 @@ const dark = {
   BACKGROUND_COLOR: '#161621',
   BACKGROUND_LIGHT_COLOR: '#272639',
   BUTTON_COLOR: '#fff',
+  STATUS_RUNNING: '#F42A35',
+  STATUS_NOT_STARTED: 'rgba(250,250,250,0.2)',
+  VOID_IMAGE: '#C4C4C4',
+  DIVIDER: 'rgba(255,255,255,0.2)',
 };
 
 const light = {
@@ -16,6 +20,10 @@ const light = {
   BACKGROUND_COLOR: '#fcfcfc',
   BACKGROUND_LIGHT_COLOR: '#272639',
   BUTTON_COLOR: '#161621',
+  STATUS_RUNNING: '#F42A35',
+  STATUS_NOT_STARTED: 'rgba(250,250,250,0.2)',
+  VOID_IMAGE: '#C4C4C4',
+  DIVIDER: 'rgba(255,255,255,0.2)',
 };
 
 const fontSize = {
