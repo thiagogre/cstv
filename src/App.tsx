@@ -3,6 +3,10 @@ import {Animated, Image, View, Text, StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BootSplash from 'react-native-bootsplash';
+import {ThemeProvider} from 'styled-components';
+
+import {dark, light} from './theme';
+import {useTheme} from './hooks';
 
 function HomeScreen() {
   return (
@@ -26,7 +30,7 @@ type Props = {
 const AnimatedBootSplash = ({onAnimationEnd}: Props) => {
   const [opacity] = React.useState(() => new Animated.Value(1));
 
-  const {container, logo /*, brand */} = BootSplash.useHideAnimation({
+  const {container, logo} = BootSplash.useHideAnimation({
     manifest: require('../assets/bootsplash_manifest.json'),
     logo: require('../assets/bootsplash_logo.png'),
     statusBarTranslucent: true,
@@ -57,21 +61,25 @@ const BootSplashAnimation = ({callback}) => {
 
 const App = () => {
   const [isBootSplashVisible, setIsBootSplashVisible] = React.useState(true);
+  const {theme, toggleTheme} = useTheme();
 
+  React.useEffect(() => console.log(theme), [theme]);
   return (
     <>
       <StatusBar barStyle="light-content" backgroundColor={'#1D1E20'} />
       {isBootSplashVisible ? (
         <BootSplashAnimation callback={() => setIsBootSplashVisible(false)} />
       ) : (
-        <NavigationContainer
-          onReady={() => {
-            BootSplash.hide();
-          }}>
-          <Stack.Navigator>
-            <Stack.Screen name="Home" component={HomeScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <ThemeProvider theme={theme === 'dark' ? dark : light}>
+          <NavigationContainer
+            onReady={() => {
+              BootSplash.hide();
+            }}>
+            <Stack.Navigator>
+              <Stack.Screen name="Home" component={HomeScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </ThemeProvider>
       )}
     </>
   );
