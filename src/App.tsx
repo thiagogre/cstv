@@ -58,7 +58,7 @@ const App = () => {
   const {theme} = useTheme();
 
   return (
-    <>
+    <S.App>
       {isBootSplashVisible ? (
         <BootSplashAnimation callback={() => setIsBootSplashVisible(false)} />
       ) : (
@@ -67,7 +67,7 @@ const App = () => {
           <PublicRoutes />
         </ThemeProvider>
       )}
-    </>
+    </S.App>
   );
 };
 

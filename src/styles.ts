@@ -1,5 +1,12 @@
 import styled from 'styled-components/native';
 
-export const BootSplashContainer = styled.SafeAreaView`
+import {dark} from './theme';
+
+export const App = styled.SafeAreaView`
+  flex: 1;
+  background-color: ${dark.BACKGROUND_COLOR};
+`;
+
+export const BootSplashContainer = styled.View`
   flex: 1;
 `;
