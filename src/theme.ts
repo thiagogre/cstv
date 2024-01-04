@@ -1,17 +1,30 @@
 const dark = {
   PRIMARY_COLOR: '#000',
   SECONDARY_COLOR: '#73737d',
-  TITLE_COLOR: '#fff',
+  PRIMARY_TEXT: '#fff',
+  SECONDARY_TEXT: '#6C6B7E',
   BACKGROUND_COLOR: '#1D1E20',
+  BACKGROUND_LIGHT_COLOR: '#272639',
   BUTTON_COLOR: '#fff',
 };
 
 const light = {
   PRIMARY_COLOR: '#fff',
   SECONDARY_COLOR: '#73737d',
-  TITLE_COLOR: '#1D1E20',
+  PRIMARY_TEXT: '#1D1E20',
+  SECONDARY_TEXT: '#6C6B7E',
   BACKGROUND_COLOR: '#fcfcfc',
+  BACKGROUND_LIGHT_COLOR: '#272639',
   BUTTON_COLOR: '#1D1E20',
 };
 
-export {light, dark};
+const fontSize = {
+  LARGE: 32,
+  BIG: 18,
+  MEDIUM: 14,
+  NORMAL: 12,
+  SMALL: 10,
+  TINY: 8,
+};
+
+export {dark, light, fontSize};
