@@ -1,33 +1,21 @@
 import * as React from 'react';
-import {Animated, Image, View, Text, StatusBar} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {Animated, Image} from 'react-native';
 import BootSplash from 'react-native-bootsplash';
 import {ThemeProvider} from 'styled-components';
 
 import {dark, light} from './theme';
 import {useTheme} from './hooks';
 
-function HomeScreen() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#1D1E20',
-      }}>
-      <Text style={{color: 'red'}}>Home Screen</Text>
-    </View>
-  );
-}
+import StatusBar from './components/StatusBar';
 
-const Stack = createNativeStackNavigator();
+import PublicRoutes from './routes/PublicRoutes';
 
-type Props = {
+import * as S from './styles';
+
+type AnimatedBootSplashProps = {
   onAnimationEnd: () => void;
 };
-const AnimatedBootSplash = ({onAnimationEnd}: Props) => {
+const AnimatedBootSplash = ({onAnimationEnd}: AnimatedBootSplashProps) => {
   const [opacity] = React.useState(() => new Animated.Value(1));
 
   const {container, logo} = BootSplash.useHideAnimation({
@@ -51,34 +39,32 @@ const AnimatedBootSplash = ({onAnimationEnd}: Props) => {
   );
 };
 
-const BootSplashAnimation = ({callback}) => {
+type BootSplashAnimationProps = {
+  callback: () => void;
+};
+const BootSplashAnimation = ({callback}: BootSplashAnimationProps) => {
   return (
-    <View style={{flex: 1}}>
-      <AnimatedBootSplash onAnimationEnd={callback} />
-    </View>
+    <>
+      <StatusBar />
+      <S.BootSplashContainer>
+        <AnimatedBootSplash onAnimationEnd={callback} />
+      </S.BootSplashContainer>
+    </>
   );
 };
 
 const App = () => {
   const [isBootSplashVisible, setIsBootSplashVisible] = React.useState(true);
-  const {theme, toggleTheme} = useTheme();
+  const {theme} = useTheme();
 
-  React.useEffect(() => console.log(theme), [theme]);
   return (
     <>
-      <StatusBar barStyle="light-content" backgroundColor={'#1D1E20'} />
       {isBootSplashVisible ? (
         <BootSplashAnimation callback={() => setIsBootSplashVisible(false)} />
       ) : (
         <ThemeProvider theme={theme === 'dark' ? dark : light}>
-          <NavigationContainer
-            onReady={() => {
-              BootSplash.hide();
-            }}>
-            <Stack.Navigator>
-              <Stack.Screen name="Home" component={HomeScreen} />
-            </Stack.Navigator>
-          </NavigationContainer>
+          <StatusBar />
+          <PublicRoutes />
         </ThemeProvider>
       )}
     </>
