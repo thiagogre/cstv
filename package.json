@@ -3,10 +3,16 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "mac:android": "export JAVA_HOME='/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home' && react-native run-android",
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "android:release": "react-native run-android --variant release",
+    "build:release": "cd android && ./gradlew bundleRelease && ./gradlew assembleRelease --warning-mode all",
+    "linux:build:release": "export JAVA_HOME='/usr/lib/jvm/java-8-openjdk-amd64/' && cd android && ./gradlew bundleRelease && ./gradlew assembleRelease",
+    "mac:build:release": "export JAVA_HOME='/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home' && cd android && ./gradlew bundleRelease && ./gradlew assembleRelease",
     "lint": "eslint .",
-    "start": "react-native start",
+    "ios": "react-native run-ios",
+    "ios:release": "react-native run-ios --configuration Release",
+    "start": "react-native start && adb reserve tcp:8081 tcp:8081",
     "test": "jest"
   },
   "dependencies": {
