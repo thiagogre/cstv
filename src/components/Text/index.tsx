@@ -1,14 +1,17 @@
 import React from 'react';
-import {Text as TextComponent, TextStyle} from 'react-native';
 
-const Text = ({
-  children,
-  ...props
-}: {
+import * as S from './styles';
+
+type Props = {
   children: React.ReactNode;
-  props: TextStyle;
-}) => {
-  return <TextComponent {...props}>{children}</TextComponent>;
+  color?: string;
+  size?: number;
+  spacing?: string;
+};
+const Text = (props: Props) => {
+  const {children} = props;
+
+  return <S.Text {...props}>{children}</S.Text>;
 };
 
 export default Text;
