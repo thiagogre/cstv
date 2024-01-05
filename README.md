@@ -19,6 +19,12 @@
 
 # Dependencies Used in this Project
 
+## react-native-bootsplash
+
+Purpose: React Native Bootsplash is utilized for building the splash screen and its assets.
+
+Description: I used it ‘cause the oldest mainstream lib react-native-splash-screen doesn’t support the newest version of RN.
+
 ## axios
 
 Purpose: Axios is utilized for handling HTTP communication within the application.
