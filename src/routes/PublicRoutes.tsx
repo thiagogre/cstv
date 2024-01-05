@@ -41,9 +41,13 @@ const PublicRoutes = () => {
         <Stack.Screen
           name="MATCH_DETAIL"
           component={MatchDetail}
-          options={{
-            ...navOptions,
-            headerTitleAlign: 'center',
+          options={({route}: any) => {
+            return {
+              ...navOptions,
+              headerTitleAlign:
+                route.params?.headerTitle?.length < 25 ? 'center' : undefined,
+              headerTitle: route.params?.headerTitle ?? '',
+            };
           }}
         />
       </Stack.Navigator>
