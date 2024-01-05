@@ -7,6 +7,8 @@ type Props = {
   color?: string;
   size?: number;
   spacing?: string;
+  bold?: boolean;
+  right?: boolean;
 };
 const Text = (props: Props) => {
   const {children} = props;
