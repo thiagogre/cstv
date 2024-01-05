@@ -37,11 +37,6 @@ export const Divider = styled.View`
   background-color: ${props => props.theme.DIVIDER};
 `;
 
-export const Teams = styled.View`
-  flex-direction: row;
-  align-items: center;
-`;
-
 export const CardFooter = styled.View`
   padding: 8px 16px;
 `;

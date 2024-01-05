@@ -1,15 +1,14 @@
-import React, {Fragment} from 'react';
-import {ActivityIndicator, RefreshControl} from 'react-native';
-import {format, isToday, isTomorrow} from 'date-fns';
-import {ptBR} from 'date-fns/locale';
+import React from 'react';
+import {RefreshControl} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import api from '../../api';
 import {fontSize} from '../../theme';
-import {useTheme} from '../../hooks';
+import {formatDate} from '../../utils/date';
 
 import Text from '../../components/Text';
-import Team from '../../components/Team';
 import Loading from '../../components/Loading';
+import Teams from '../../components/Teams';
 
 import * as S from './styles';
 
@@ -23,20 +22,6 @@ const LeagueSerie = ({url, name}) => {
 };
 
 const StatusLabel = ({status, beginAt}) => {
-  const formatDate = React.useCallback((date?: string) => {
-    if (!date) {
-      return '--';
-    }
-
-    if (isToday(new Date(date))) {
-      return format(new Date(date), "'Hoje', HH:mm", {locale: ptBR});
-    } else if (isTomorrow(new Date(date))) {
-      return format(new Date(date), "EEE', 'HH:mm", {locale: ptBR});
-    } else {
-      return format(new Date(date), 'dd.MM HH:mm', {locale: ptBR});
-    }
-  }, []);
-
   return (
     <S.StatusLabel status={status}>
       <Text size={fontSize.TINY}>
@@ -47,25 +32,17 @@ const StatusLabel = ({status, beginAt}) => {
 };
 
 const Card = ({data, isFirst}) => {
-  const id = React.useId();
+  const navigation = useNavigation();
 
   return (
-    <S.Card isFirst={isFirst} onPress={() => {}}>
+    <S.Card
+      isFirst={isFirst}
+      onPress={() => navigation.navigate('MATCH_DETAIL', {data})}>
       <S.CardHeader>
         <StatusLabel beginAt={data?.begin_at} status={data?.status} />
       </S.CardHeader>
       <S.CardBody>
-        <S.Teams>
-          {data?.opponents?.length > 0 &&
-            data.opponents.map(({opponent}, i) => (
-              <Fragment key={id + '-' + i}>
-                <Team url={opponent?.image_url} name={opponent?.name} />
-                {i < data.opponents.length - 1 && (
-                  <Text spacing={'0 20px'}>vs</Text>
-                )}
-              </Fragment>
-            ))}
-        </S.Teams>
+        <Teams opponents={data?.opponents} />
       </S.CardBody>
       <S.Divider />
       <S.CardFooter>
@@ -79,7 +56,6 @@ const Card = ({data, isFirst}) => {
 };
 
 const MatchesList = () => {
-  const {theme} = useTheme();
   const id = React.useId();
   const [loading, setLoading] = React.useState(true);
   const [infinityScrollLoading, setInfinityScrollLoading] =
@@ -87,12 +63,6 @@ const MatchesList = () => {
   const [matches, setMatches] = React.useState<any[] | null>(null);
   const [page, setPage] = React.useState(1);
   const [hasNextPage, setHasNextPage] = React.useState(true);
-
-  //         `https://api.pandascore.co/csgo/matches?filter[status]=not_started,running&sort=begin_at&page=1&page[size]=5`,
-
-  //           `https://api.pandascore.co/csgo/teams?filter[id]=129160`,
-
-  const scrollViewRef = React.useRef(null);
 
   const handleScroll = event => {
     const scrollY = event.nativeEvent.contentOffset.y;
@@ -128,9 +98,9 @@ const MatchesList = () => {
 
         const {data} = await api.get(query);
 
-        // if (!data?.length) {
-        //   setHasNextPage(false);
-        // }
+        if (!data?.length) {
+          setHasNextPage(false);
+        }
 
         setMatches(prev =>
           page === 1 ? data : prev ? [...prev, ...data] : data ?? [],
@@ -156,7 +126,6 @@ const MatchesList = () => {
         {!loading ? (
           matches?.length > 0 && (
             <S.ScrollView
-              ref={scrollViewRef}
               showsVerticalScrollIndicator={false}
               onScroll={handleScroll}
               scrollEventThrottle={16}
