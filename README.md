@@ -1,79 +1,92 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+<table>
+  <tr>
+    <td>
+      <a href="assets/final/MatchesList.png">
+        <img src="assets/final/MatchesList.png" alt="Matches List Screen Image" style="height: 500px;"/>
+      </a>
+    </td>
+    <td>
+      <a href="assets/final/MatchDetail.png">
+        <img src="assets/final/MatchDetail.png" alt="Match Detail Screen Image" style="height: 500px;"/>
+      </a>
+    </td>
+  </tr>
+</table>
 
-# Getting Started
+# Introduction
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+> **Note**: Please note that this application is currently configured to run on Android devices. Due to the limitations of my development environment, I have tested and configured the application for Android platforms only. Unfortunately, I do not have access to macOS, which prevents me from providing direct support or testing on iOS devices. However, I have included the necessary configurations and setup steps that should enable running the application on macOS or iOS devices.
 
-## Step 1: Start the Metro Server
+# Dependencies Used in this Project
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## axios
 
-To start Metro, run the following command from the _root_ of your React Native project:
+Purpose: Axios is utilized for handling HTTP communication within the application.
+
+Description: Axios is a popular JavaScript library used to make HTTP requests from the browser or Node.js environment. In this project, it manages communication with external APIs or backend services, facilitating the retrieval and manipulation of data.
+
+## react-native-dotenv
+
+Purpose: React Native Dotenv manages environment variables in the project.
+
+Description: It allows configuration settings or sensitive data (such as API keys) to be stored securely in environment files, enhancing security and managing various configurations across development, staging, and production environments.
+
+## styled-components
+
+Purpose: Styled Components is employed for building UI components with styled JSX in React Native.
+
+Description: Styled Components is a powerful library that enables writing CSS-in-JS for React and React Native applications. It helps create reusable and styled UI components by allowing the use of JavaScript to define styles, making the styling process more dynamic and efficient.
+
+## react-native-mmkv
+
+Purpose: React Native MMKV is utilized for managing storage within the application.
+
+Description: It offers a simple and efficient storage solution by utilizing native key-value storage mechanisms on both iOS and Android platforms. This allows for faster access to stored data, making it ideal for managing application state or caching.
+
+## react-native-navigation
+
+Purpose: React Native Navigation handles screen navigations in the application.
+
+Description: It offers a seamless and performant navigation experience by leveraging native components, ensuring smooth transitions and better user experience while navigating between different screens or sections of the app.
+
+## date-fns
+
+Purpose: date-fns is used for handling and formatting dates within the application.
+
+Description: date-fns is employed to manage date-related functionality, such as formatting dates for display, parsing, calculating durations, and handling time zones. Its versatility and ease of use make it a valuable tool for managing and manipulating dates across the application.
+
+# Running the Project
+
+You can run this project in multiple ways:
+
+### 1. Development Mode
+
+To run the application in development mode:
+
+1. Add your .env file following the .env_example.
+2. Open a terminal.
+3. Run the following command to start the development server:
 
 ```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+npm run start
 ```
 
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
+3. In another terminal tab, run:
 
 ```bash
-# using npm
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### For iOS
+### 2. Release Version
+
+To run the release version directly on a device:
+
+1. Add your .env file following the .env_example.
 
 ```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+npm run android:release
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+### 3. Installing the APK
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Alternatively, you can install the APK file of the app available in the main folder.
