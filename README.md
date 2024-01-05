@@ -57,6 +57,8 @@ Description: date-fns is employed to manage date-related functionality, such as 
 
 # Running the Project
 
+> **Note**: Before you run this project, ensure that these React Native dependencies already installed in your enviroment => JDK 17 and node >= 18.x.
+
 You can run this project in multiple ways:
 
 ### 1. Development Mode
